@@ -24,7 +24,7 @@ regd_users.post("/login", (req,res) => {
             req.session.authorization = {
                 accessToken, username
             };
-            return res.status(200).json({message: "User successfully logged in!"});
+            return res.status(200).json({message: "Login successful!"});
         } else {
             return res.status(208).json({message: "Invalid Username or Password!"});
         }
@@ -41,7 +41,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     const book = books[isbn];
     const username = req.session.authorization.username;
     book.reviews[username] = review;
-    return res.status(200).json({message: "Review saved successfully"});
+    return res.status(200).json({message: "Review added/updated successfully", reviews: book.reviews});
 });
 
 // Delete a book review
